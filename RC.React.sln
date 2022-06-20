@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RC.React.Api", "RC.React.Api\RC.React.Api.csproj", "{6E8D8662-5671-4F02-A1FC-5071BA8EC214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RC.React.Api", "RC.React.Api\RC.React.Api.csproj", "{6E8D8662-5671-4F02-A1FC-5071BA8EC214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RC.React.Application", "RC.React.Application\RC.React.Application.csproj", "{E6CD4173-7EA5-40B8-B785-5C4F4F94EFDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RC.React.Application", "RC.React.Application\RC.React.Application.csproj", "{E6CD4173-7EA5-40B8-B785-5C4F4F94EFDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RC.React.Domain", "RC.React.Domain\RC.React.Domain.csproj", "{C0AE4F42-6A9B-4B44-9526-C6D95DBB5CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RC.React.Domain", "RC.React.Domain\RC.React.Domain.csproj", "{C0AE4F42-6A9B-4B44-9526-C6D95DBB5CE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NT.React.Persistence", "NT.React.Persistence\NT.React.Persistence.csproj", "{D51BF62E-CEFC-471A-861C-52B94CF00759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NT.React.Persistence", "NT.React.Persistence\NT.React.Persistence.csproj", "{D51BF62E-CEFC-471A-861C-52B94CF00759}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "rc.react.client", "rc.react.client\rc.react.client.esproj", "{92FF1097-30F2-45CD-A3C2-0E6821BFC807}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,12 @@ Global
 		{D51BF62E-CEFC-471A-861C-52B94CF00759}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D51BF62E-CEFC-471A-861C-52B94CF00759}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D51BF62E-CEFC-471A-861C-52B94CF00759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92FF1097-30F2-45CD-A3C2-0E6821BFC807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92FF1097-30F2-45CD-A3C2-0E6821BFC807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92FF1097-30F2-45CD-A3C2-0E6821BFC807}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{92FF1097-30F2-45CD-A3C2-0E6821BFC807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92FF1097-30F2-45CD-A3C2-0E6821BFC807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92FF1097-30F2-45CD-A3C2-0E6821BFC807}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
