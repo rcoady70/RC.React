@@ -1,63 +1,102 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using NT.React.Persistence;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using RC.React.Api.Extensions;
+using RC.React.Application.Activities;
 
-namespace API
+namespace RC.React.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IConfiguration _config;
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
-            });
-            services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("CorsPolicy", policy =>
+            services.AddControllers(opt =>
                 {
-                    policy.AllowAnyMethod()
-                          .AllowAnyHeader()
-                          .WithOrigins("http://localhost:3000", "https://localhost:3000");
+                    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                    opt.Filters.Add(new AuthorizeFilter(policy));
+                })
+                .AddFluentValidation(config =>
+                {
+                    config.RegisterValidatorsFromAssemblyContaining<Create>();
                 });
-            });
+            services.AddApplicationServices(_config);
+            services.AddIdentityServices(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.UseMiddleware<ExceptionMiddleware>();
+
+            //app.UseXContentTypeOptions();
+            //app.UseReferrerPolicy(opt => opt.NoReferrer());
+            //app.UseXXssProtection(opt => opt.EnabledWithBlockMode());
+            //app.UseXfo(opt => opt.Deny());
+            //app.UseCsp(opt => opt
+            //    .BlockAllMixedContent()
+            //    .StyleSources(s => s.Self().CustomSources(
+            //        "https://fonts.googleapis.com",
+            //        "sha256-/epqQuRElKW1Z83z1Sg8Bs2MKi99Nrq41Z3fnS2Nrgk=",
+            //        "sha256-2aahydUs+he2AO0g7YZuG67RGvfE9VXGbycVgIwMnBI=",
+            //        "sha256-+oGcdj5BhO6SoiIGYIkPOMYi7d2h2Pp/bkJLBfYL+kk="
+            //    ))
+            //    .FontSources(s => s.Self().CustomSources(
+            //        "https://fonts.gstatic.com", "data:"
+            //    ))
+            //    .FormActions(s => s.Self())
+            //    .FrameAncestors(s => s.Self())
+            //    .ImageSources(s => s.Self().CustomSources(
+            //        "https://res.cloudinary.com",
+            //        "https://www.facebook.com",
+            //        "https://platform-lookaside.fbsbx.com",
+            //        "data:"
+            //        ))
+            //    .ScriptSources(s => s.Self()
+            //        .CustomSources(
+            //            "sha256-HIgflxNtM43xg36bBIUoPTUuo+CXZ319LsTVRtsZ/VU=",
+            //            "https://connect.facebook.net",
+            //            "sha256-3x3EykMfFJtFd84iFKuZG0MoGAo5XdRfl3rq3r//ydA="
+            //        ))
+            //);
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+            }
+            else
+            {
+                app.Use(async (context, next) =>
+                {
+                    context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000");
+                    await next.Invoke();
+                });
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseCors("CorsPolicy"); //order important, put after use routing
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
+            app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                //endpoints.MapHub<ChatHub>("/chat");
+                //endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }

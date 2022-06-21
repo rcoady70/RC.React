@@ -1,40 +1,40 @@
-﻿using RC.React.Domain;
+﻿using Microsoft.AspNetCore.Identity;
+using RC.React.Domain;
 
 namespace NT.React.Persistence;
 
 public class Seed
 {
-    public static async Task SeedData(DataContext context)//, UserManager<AppUser> userManager)
+    public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
     {
-        //if (!userManager.Users.Any() && !context.Activities.Any())
-        if (!context.Activities.Any())
+        if (!userManager.Users.Any() && !context.Activities.Any())
         {
-            //var users = new List<AppUser>
-            //    {
-            //        new AppUser
-            //        {
-            //            DisplayName = "Bob",
-            //            UserName = "bob",
-            //            Email = "bob@test.com"
-            //        },
-            //        new AppUser
-            //        {
-            //            DisplayName = "Jane",
-            //            UserName = "jane",
-            //            Email = "jane@test.com"
-            //        },
-            //        new AppUser
-            //        {
-            //            DisplayName = "Tom",
-            //            UserName = "tom",
-            //            Email = "tom@test.com"
-            //        },
-            //    };
+            var users = new List<AppUser>
+                {
+                    new AppUser
+                    {
+                        DisplayName = "Bob",
+                        UserName = "bob",
+                        Email = "bob@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Jane",
+                        UserName = "jane",
+                        Email = "jane@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Tom",
+                        UserName = "tom",
+                        Email = "tom@test.com"
+                    },
+                };
 
-            //foreach (var user in users)
-            //{
-            //    await userManager.CreateAsync(user, "Pa$$w0rd");
-            //}
+            foreach (var user in users)
+            {
+                await userManager.CreateAsync(user, "Pa$$w0rd");
+            }
 
             var activities = new List<Activity>
                 {
@@ -45,15 +45,15 @@ public class Seed
                         Description = "Activity 2 months ago",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Pub"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[0],
-                        //        IsHost = true
-                        //    }
-                        //}
+                        Venue = "Pub",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            }
+                        }
                     },
                     new Activity
                     {
@@ -62,20 +62,20 @@ public class Seed
                         Description = "Activity 1 month ago",
                         Category = "culture",
                         City = "Paris",
-                        Venue = "The Louvre"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[0],
-                        //        IsHost = true
-                        //    },
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[1],
-                        //        IsHost = false
-                        //    },
-                        //}
+                        Venue = "The Louvre",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activity
                     {
@@ -84,20 +84,20 @@ public class Seed
                         Description = "Activity 1 month in future",
                         Category = "music",
                         City = "London",
-                        Venue = "Wembly Stadium"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[2],
-                        //        IsHost = true
-                        //    },
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[1],
-                        //        IsHost = false
-                        //    },
-                        //}
+                        Venue = "Wembly Stadium",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activity
                     {
@@ -106,20 +106,20 @@ public class Seed
                         Description = "Activity 2 months in future",
                         Category = "food",
                         City = "London",
-                        Venue = "Jamies Italian"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[0],
-                        //        IsHost = true
-                        //    },
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[2],
-                        //        IsHost = false
-                        //    },
-                        //}
+                        Venue = "Jamies Italian",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activity
                     {
@@ -128,20 +128,20 @@ public class Seed
                         Description = "Activity 3 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Pub"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[1],
-                        //        IsHost = true
-                        //    },
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[0],
-                        //        IsHost = false
-                        //    },
-                        //}
+                        Venue = "Pub",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activity
                     {
@@ -150,15 +150,15 @@ public class Seed
                         Description = "Activity 4 months in future",
                         Category = "culture",
                         City = "London",
-                        Venue = "British Museum"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[1],
-                        //        IsHost = true
-                        //    }
-                        //}
+                        Venue = "British Museum",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = true
+                            }
+                        }
                     },
                     new Activity
                     {
@@ -167,20 +167,20 @@ public class Seed
                         Description = "Activity 5 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Punch and Judy"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[0],
-                        //        IsHost = true
-                        //    },
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[1],
-                        //        IsHost = false
-                        //    },
-                        //}
+                        Venue = "Punch and Judy",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activity
                     {
@@ -189,20 +189,20 @@ public class Seed
                         Description = "Activity 6 months in future",
                         Category = "music",
                         City = "London",
-                        Venue = "O2 Arena"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[2],
-                        //        IsHost = true
-                        //    },
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[1],
-                        //        IsHost = false
-                        //    },
-                        //}
+                        Venue = "O2 Arena",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activity
                     {
@@ -211,20 +211,20 @@ public class Seed
                         Description = "Activity 7 months in future",
                         Category = "travel",
                         City = "Berlin",
-                        Venue = "All"
-                        //Attendees = new List<ActivityAttendee>
-                        //{
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[0],
-                        //        IsHost = true
-                        //    },
-                        //    new ActivityAttendee
-                        //    {
-                        //        AppUser = users[2],
-                        //        IsHost = false
-                        //    },
-                        //}
+                        Venue = "All",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activity
                     {
@@ -233,20 +233,20 @@ public class Seed
                         Description = "Activity 8 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Pub"
-                    //    Attendees = new List<ActivityAttendee>
-                    //    {
-                    //        new ActivityAttendee
-                    //        {
-                    //            AppUser = users[2],
-                    //            IsHost = true
-                    //        },
-                    //        new ActivityAttendee
-                    //        {
-                    //            AppUser = users[1],
-                    //            IsHost = false
-                    //        },
-                    //    }
+                        Venue = "Pub",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
                     }
                 };
 
