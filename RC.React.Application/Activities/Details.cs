@@ -2,9 +2,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using NT.React.Persistence;
-using RC.React.Application.Core;
-using RC.React.Application.Interfaces;
 
 namespace RC.React.Application.Activities;
 
