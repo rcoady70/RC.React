@@ -15,7 +15,7 @@ public class Edit
     {
         public CommandValidator()
         {
-            RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+            // RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
         }
     }
 

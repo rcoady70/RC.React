@@ -10,6 +10,7 @@
   <ItemGroup>
     <Folder Include="public\assets\" />
     <Folder Include="src\app\Models\" />
+    <Folder Include="src\app\api\" />
     <Folder Include="src\features\activities\dashboard\" />
     <Folder Include="src\features\activities\details\" />
     <Folder Include="src\features\activities\form\" />

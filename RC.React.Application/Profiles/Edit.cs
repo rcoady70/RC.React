@@ -17,7 +17,7 @@ public class Edit
     {
         public CommandValidator()
         {
-            RuleFor(x => x.DisplayName).NotEmpty();
+            //RuleFor(x => x.DisplayName).NotEmpty();
         }
     }
 

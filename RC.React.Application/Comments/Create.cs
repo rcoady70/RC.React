@@ -2,10 +2,6 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using NT.React.Persistence;
-using RC.React.Application.Core;
-using RC.React.Application.Interfaces;
-using RC.React.Domain;
 
 namespace RC.React.Application.Comments;
 
@@ -21,7 +17,7 @@ public class Create
     {
         public CommandValidator()
         {
-            RuleFor(x => x.Body).NotEmpty();
+            //RuleFor(x => x.Body).NotEmpty();
         }
     }
 
