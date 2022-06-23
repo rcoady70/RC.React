@@ -1,20 +1,23 @@
 import react from 'react'
 import { Button, Card, Icon, Image } from 'semantic-ui-react';
-import { Activity } from '../../../app/Models/activity'
+import LoadingComponents from '../../../app/layout/LoadingComponents';
+import { useStore } from '../../../app/stores/store';
 
-interface Props {
-    activity: Activity,
-    cancelSelectActivity: () => void;
-    openForm: (id: string) => void;
-}
-export default function ActivityDetails({ activity, cancelSelectActivity, openForm }:Props) {
+
+export default function ActivityDetails() {
+    const { activityStore } = useStore();
+    //de-construct selectedActivity and alias as activity 
+    const { selectedActivity: activity,openForm,cancelSelectActivity } = activityStore;
+
+    if (!activity) return <LoadingComponents content={''}/>;
+
     return (
         <Card fluid>
             <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
             <Card.Content>
                 <Card.Header>{activity.title}</Card.Header>
                 <Card.Meta>
-                    <span>Joined in 2015</span>
+                    <span>{activity.date}</span>
                 </Card.Meta>
                 <Card.Description>
                     {activity.description}
