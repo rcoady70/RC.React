@@ -131,6 +131,20 @@ export default class ActivityStore {
                                                           .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
     }
 
+    //Group activities by date
+    get groupedActivities() {
+        return Object.entries(
+            //Use array reduce function 
+            this.activitiesByDate.reduce((activities, activity) =>
+            {
+                const date = activity.date;
+                //Get activities which match the date
+                activities[date] = activities[date] ? [...activities[date], activity] : [activity];
+                return activities;
+            }, {} as { [key: string]: Activity[]})
+        )
+    }
+
     //Must be wrapped in an action otherwise shows console warning in relation to async / await functions
     //Setting state in async await will cause error if not wrapped in an action.
     setLoadingInital = (state: boolean) => {
