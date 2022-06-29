@@ -2,6 +2,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using RC.React.Api.Extensions;
+using RC.React.Api.Middleware;
 using RC.React.Application.Activities;
 
 namespace RC.React.Api
@@ -22,6 +23,7 @@ namespace RC.React.Api
                     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                     opt.Filters.Add(new AuthorizeFilter(policy));
                 })
+                //Add & register fluent validation 
                 .AddFluentValidation(config =>
                 {
                     config.RegisterValidatorsFromAssemblyContaining<Create>();
@@ -33,7 +35,7 @@ namespace RC.React.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<ExceptionMiddleware>();
 
             //app.UseXContentTypeOptions();
             //app.UseReferrerPolicy(opt => opt.NoReferrer());

@@ -1,5 +1,9 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { historyX } from '../..';
 import { Activity } from '../Models/activity';
+import { store } from '../stores/store';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -8,20 +12,40 @@ const sleep = (delay: number) => {
 }
 axios.defaults.baseURL = "https://localhost:5001/api";
 axios.interceptors.response.use(async response => {
-    try {
         await sleep(1000);
         return response;
-    }
-    catch (error) {
-        console.log(error);
-        return await Promise.reject(error);
-    }
-    //return sleep(1000).then(() => {
-    //    return response
-    //}).catch((error) => {
-    //    console.log(error);
-    //    return Promise.reject(error);
-    //})
+},(error: AxiosError) => {
+        const { data }: any = error.response!;
+        const { status,config } = error.response!;
+        switch (status) {
+            case 400:
+                if (typeof data === 'string')
+                    toast.error(data);
+                //If a getting a record send to not found. Is get and has an id.
+                if (config.method === 'get' && data.errors.hasOwnProperty('id'))
+                    historyX.push('/not-found');
+                if (data.errors) {
+                    const modalStateErrors = [];
+                    for (const key in data.errors) {
+                        if (data.errors[key]) {
+                            modalStateErrors.push(data.errors[key])
+                        }
+                    }
+                    throw modalStateErrors.flat();
+                } 
+                break;
+            case 401:
+                toast.error("data.401");
+                break;
+            case 404: //not found
+                historyX.push('/not-found');
+                break;
+            case 500:
+                store.commonStore.setServerError(data);
+                historyX.push('/server-error');
+                break;
+        }
+        return Promise.reject(error);
 });
 
 //Takes response from axios and returns the data property

@@ -13,9 +13,12 @@ public class Edit
 
     public class CommandValidator : AbstractValidator<Command>
     {
+        /// <summary>
+        /// Share validator with create
+        /// </summary>
         public CommandValidator()
         {
-            // RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+            RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
         }
     }
 
