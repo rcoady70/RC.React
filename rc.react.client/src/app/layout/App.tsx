@@ -33,6 +33,7 @@ function App() {
                         {/*Use key from location to force activityform to reload between edit and create new. It does not re-load even though querystring parm changes */}
                         <Route key={location.key} path='/createActivity' element={<ActivityForm />} />
                         <Route key={location.key} path='/createActivity/:id' element={<ActivityForm />} />
+
                         <Route key={location.key} path='/errors' element={<TestErrors />} />
                         <Route key={location.key} path='/server-error' element={<ServerError />} />
                         {/*Catch all route*/}

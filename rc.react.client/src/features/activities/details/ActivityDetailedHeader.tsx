@@ -1,7 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Button, Header, Item, Segment, Image } from 'semantic-ui-react'
 import { Activity } from '../../../app/Models/activity';
+import { format } from 'date-fns';
 
 //Styles outside of container to add white text over the image
 //
@@ -36,7 +38,7 @@ export default observer(function ActivityDetailedHeader({ activity }: Props) {
                                     content={activity.title}
                                     style={{ color: 'white' }}
                                 />
-                                <p>{activity.date}</p>
+                                <p>{format(activity.date!, 'dd MMM yyyy h:mm aa')}</p>
                                 <p>
                                     Hosted by <strong>Bob</strong>
                                 </p>
@@ -48,7 +50,7 @@ export default observer(function ActivityDetailedHeader({ activity }: Props) {
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Activity</Button>
                 <Button>Cancel attendance</Button>
-                <Button color='orange' floated='right'>
+                <Button as={Link} to={`/createActivity/${activity.id}`} color='orange' floated='right'>
                     Manage Event
                 </Button>
             </Segment>

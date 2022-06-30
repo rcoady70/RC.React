@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@types/react-datepicker": "^4.4.2",
+    "react-datepicker": "^4.8.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/yup": "^0.29.14"
+  }
+}

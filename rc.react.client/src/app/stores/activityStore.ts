@@ -1,6 +1,7 @@
 import { makeAutoObservable,  runInAction } from "mobx";
 import agent from "../api/agents";
 import { Activity } from "../Models/activity";
+import { format } from 'date-fns';
 
 export default class ActivityStore {
     activitieRegistry = new Map<string, Activity>();
@@ -55,7 +56,7 @@ export default class ActivityStore {
     }
     //Set selected activity and parse date
     private setActivity = (activity: Activity) => {
-        activity.date = activity.date.split('T')[0];
+        activity.date = new Date(activity.date!);
         //Add activity to registry
         this.activitieRegistry.set(activity.id, activity);
     }
@@ -128,7 +129,7 @@ export default class ActivityStore {
     //Computed property
     get activitiesByDate() {
         return Array.from(this.activitieRegistry.values())
-                                                          .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+            .sort((a, b) => a.date!.getTime() - b.date!.getTime());
     }
 
     //Group activities by date
@@ -137,7 +138,7 @@ export default class ActivityStore {
             //Use array reduce function 
             this.activitiesByDate.reduce((activities, activity) =>
             {
-                const date = activity.date;
+                const date = format(activity.date!,'dd MMM yyyy');
                 //Get activities which match the date
                 activities[date] = activities[date] ? [...activities[date], activity] : [activity];
                 return activities;

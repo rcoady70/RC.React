@@ -19,10 +19,11 @@ export default observer(function ActivityDetails() {
     useEffect(() => {
         //Load and set activity
         if (id) loadActivity(id);
+        var m = '';
         //Depends on and id and loadActivity
     },[id,loadActivity])
 
-    if (!activity || loadingInital) return <LoadingComponents content={''}/>;
+    if (!activity || loadingInital) return <LoadingComponents content={'loading activity'}/>;
 
     return (
         <Grid>
@@ -35,24 +36,6 @@ export default observer(function ActivityDetails() {
                 <ActivityDetailedSideBar />
             </Grid.Column>
         </Grid>
-        //<Card fluid>
-        //    <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
-        //    <Card.Content>
-        //        <Card.Header>{activity.title}</Card.Header>
-        //        <Card.Meta>
-        //            <span>{activity.date}</span>
-        //        </Card.Meta>
-        //        <Card.Description>
-        //            {activity.description}
-        //        </Card.Description>
-        //    </Card.Content>
-        //    <Card.Content extra>
-        //        <Button.Group widths='2'>
-        //            <Button as={Link} to={`/createActivity/${activity.id}`} basic color='blue' content='Edit' />
-        //            <Button as={Link} to={`/activities`} basic color='grey' content='Cancel' />
-        //        </Button.Group>
-        //    </Card.Content>
-        //</Card>
     );
 })
 
