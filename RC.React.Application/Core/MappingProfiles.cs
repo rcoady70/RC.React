@@ -1,7 +1,6 @@
 using RC.React.Application.Activities;
 using RC.React.Application.Comments;
 using RC.React.Application.Profiles;
-using RC.React.Domain;
 
 namespace RC.React.Application.Core;
 

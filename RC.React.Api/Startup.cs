@@ -20,6 +20,7 @@ namespace RC.React.Api
         {
             services.AddControllers(opt =>
                 {
+                    //Require authentication on all endpoints
                     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                     opt.Filters.Add(new AuthorizeFilter(policy));
                 })

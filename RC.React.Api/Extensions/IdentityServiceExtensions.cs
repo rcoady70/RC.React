@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using RC.React.Api.Services;
-using RC.React.Infrastructure;
+using RC.React.Infrastructure.Security;
 using System.Text;
 
 namespace RC.React.Api.Extensions;
@@ -51,8 +51,10 @@ public static class IdentityServiceExtensions
                 };
             });
 
+        //Add authorization policy which checks if user is owner of activity...
         services.AddAuthorization(opt =>
         {
+            //Added as attribute on controller method - [Authorize(Policy = "IsActivityHost")]
             opt.AddPolicy("IsActivityHost", policy =>
             {
                 policy.Requirements.Add(new IsHostRequirement());

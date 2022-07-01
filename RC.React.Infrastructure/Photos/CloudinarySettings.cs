@@ -1,4 +1,4 @@
-namespace RC.React.Infrastructure;
+namespace RC.React.Infrastructure.Photos;
 
 public class CloudinarySettings
 {

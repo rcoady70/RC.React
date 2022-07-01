@@ -8,14 +8,12 @@ namespace RC.React.Api.Controllers
     public class BuggyController : BaseApiController
     {
         [HttpGet("not-found")]
-        [AllowAnonymous]
         public ActionResult GetNotFound()
         {
             return NotFound();
         }
 
         [HttpGet("bad-request")]
-        [AllowAnonymous]
         public ActionResult GetBadRequest()
         {
             return BadRequest("This is a bad request");

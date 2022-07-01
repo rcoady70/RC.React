@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 using RC.React.Application.Interfaces;
 using System.Security.Claims;
 
-namespace RC.React.Infrastructure;
+namespace RC.React.Infrastructure.Security;
 
 public class UserAccessor : IUserAccessor
 {

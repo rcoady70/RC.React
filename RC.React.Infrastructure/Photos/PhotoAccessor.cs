@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using RC.React.Application.Interfaces;
 using RC.React.Application.Photos;
 
-namespace RC.React.Infrastructure;
+namespace RC.React.Infrastructure.Photos;
 
 public class PhotoAccessor : IPhotoAccessor
 {

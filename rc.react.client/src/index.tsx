@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(
 root.render(
     /*  Supply mobx store to whole application*/
     <StoreContext.Provider value={store} >
-        /*V6 changes the way you make history available outside of components. https://github.com/remix-run/react-router/issues/8264 */
+        {/*V6 changes the way you make history available outside of components. https://github.com/remix-run/react-router/issues/8264 */}
         <HistoryRouter history={historyX}>
             <App />
         </HistoryRouter>

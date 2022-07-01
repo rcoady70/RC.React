@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace RC.React.Infrastructure;
+namespace RC.React.Infrastructure.Email;
 
 public class EmailSender
 {

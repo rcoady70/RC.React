@@ -9,8 +9,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="public\assets\" />
+    <Folder Include="src\app\common\Modals\" />
     <Folder Include="src\app\common\options\" />
-    <Folder Include="src\app\Models\" />
     <Folder Include="src\app\api\" />
     <Folder Include="src\app\stores\" />
     <Folder Include="src\features\activities\dashboard\" />

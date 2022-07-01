@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using RC.React.Infrastructure;
+using RC.React.Infrastructure.Email;
+using RC.React.Infrastructure.Photos;
+using RC.React.Infrastructure.Security;
 
 namespace RC.React.Api.Extensions;
 

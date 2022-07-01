@@ -28,8 +28,8 @@ public class List
             var query = _context.Activities
                 .Where(d => d.Date >= request.Params.StartDate)
                 .OrderBy(d => d.Date)
-                .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
-                    new { currentUsername = _userAccessor.GetUsername() })
+                //Use auto mapper to project result
+                .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider, new { currentUsername = _userAccessor.GetUsername() })
                 .AsQueryable();
 
             if (request.Params.IsGoing && !request.Params.IsHost)
