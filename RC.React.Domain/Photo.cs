@@ -1,5 +1,5 @@
 namespace RC.React.Domain;
-
+//Merge test
 public class Photo
 {
     public string Id { get; set; }
